@@ -123,4 +123,5 @@ class Spatcher
       actionName += 'Action'
     actionName
 
+
 module.exports = Spatcher

@@ -28,7 +28,9 @@ module.exports = (grunt) ->
         command: 'node_modules/.bin/coffee --output lib src'
 
       publish:
-        command: 'cp package.json lib/spatcher; cp README.md lib/spatcher; rm lib/spatcher/test; (cd lib/spatcher; npm publish);'
+        command: 'grunt coffee; cp package.json lib/spatcher; ' +
+          'cp README.md lib/spatcher; rm -rf lib/spatcher/test; ' +
+          '(cd lib/spatcher; npm publish);'
 
 
   grunt.loadNpmTasks 'grunt-contrib-watch'
