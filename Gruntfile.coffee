@@ -28,7 +28,7 @@ module.exports = (grunt) ->
         command: 'node_modules/.bin/coffee --output lib src'
 
       publish:
-        command: 'grunt coffee; cp package.json lib/spatcher; ' +
+        command: 'grunt shell:coffee; cp package.json lib/spatcher; ' +
           'cp README.md lib/spatcher; rm -rf lib/spatcher/test; ' +
           '(cd lib/spatcher; npm publish);'
 
