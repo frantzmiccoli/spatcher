@@ -145,6 +145,21 @@ var secondSpatcherInstance = require('spatcher')(app, 'somemodule/somecontroller
 // ...
 ```
 
+Parameters extraction
+---
+
+If you want sexy urls, you can!
+
+```
+http://myserver.com/something/myTool/a/1/b/2/c/3/a/checkThat
+```
+
+The `req` (first) parameter received by your `somethingController` module's `myToolAction` function will contain a key `a` value `['1', 'checkThat']` and you guess that `b` and `c` will hold `'2'` and `'3'`.
+
+
+
+
+
 Origin
 ===
 

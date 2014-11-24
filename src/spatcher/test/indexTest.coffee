@@ -43,11 +43,13 @@ describe 'spatcher', ->
       expect(response.statusCode).to.not.equal 200
       expect(counterController.callsHistory.length).to.equal 2
     .then ->
-      #Updating the spatcherInstance configuration
-      spatcherInstance.appendActionToName = false
+      done()
 
-      testUrl('/counter/existingSecondOfTheName')
-    .then (response) ->
+  it 'should correctly handle the configuration', (done) ->
+    #Updating the spatcherInstance configuration
+    spatcherInstance.appendActionToName = false
+
+    testUrl('/counter/existingSecondOfTheName').then (response) ->
       expect(response.statusCode).to.equal 200
       expect(counterController.callsHistory.length).to.equal 3
     .then ->
@@ -69,3 +71,21 @@ describe 'spatcher', ->
     .then ->
       done()
 
+  it 'should correctly extract parameters', (done) ->
+    # Resetting the instance
+    spatcherInstance.appendControllerToName = true
+    spatcherInstance.appendActionToName = true
+    spatcherInstance.errorOnActionNameLeadingUnderscore = true
+
+    url = '/counter/existing/count/123/alphaToken/Hey%20hey%20hey%20%C3%A7/' +
+        'alphaToken/42'
+    testUrl(url).then (response) ->
+      expect(response.statusCode).to.equal 200
+      expect(counterController.callsHistory.length).to.equal 6
+      expect(counterController.callsHistory[5].name).to.equal 'existingAction'
+      req = counterController.callsHistory[5].args[0]
+      params = req.params
+      expect(params).to.contain.keys('count', 'alphaToken')
+      expect(params['alphaToken']).to.include.members(['42', 'Hey hey hey ç'])
+
+      done()

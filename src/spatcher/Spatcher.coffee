@@ -58,8 +58,9 @@ class Spatcher
 
     # we expand to the req object
     while extraParameters.length != 0
-      key = extraParameters.shift()
-      parameter = extraParameters.shift()
+      key = decodeURIComponent(extraParameters.shift())
+      parameter = decodeURIComponent(extraParameters.shift())
+
       if key in ['controller', 'action']
         continue
       if key in Object.keys(req.params)
