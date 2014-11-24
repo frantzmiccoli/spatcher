@@ -77,11 +77,14 @@ class Spatcher
       targetModule = controllersModule + "/" + controllerName
       controller = require(targetModule)
     catch e
-    # No error here it might be in another module
-      console.warn 'No controller found: ', controllerName, ' looked in ' +
-        targetModule
-      next()
-      return
+      # No error here it might be in another module
+      if e.code == 'MODULE_NOT_FOUND'
+        console.warn('No controller found: ',
+            controllerName, ' looked in ' + targetModule)
+        next()
+        return
+      # This is not a module that has failed loading, that's a true error.
+      throw e
 
     actionName = @_preprocessActionName(actionName)
     if typeof controller[actionName] is 'function'

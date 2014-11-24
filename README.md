@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/frantzmiccoli/spatcher.png)](http://travis-ci.org/frantzmiccoli/spatcher)
+
 `spatcher` is here to help you to avoid manually writing all routes to dispatch requests in an `express` app.
 
 Getting started

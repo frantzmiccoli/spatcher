@@ -1,6 +1,6 @@
 {
   "name": "spatcher",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "Fräntz Miccoli",
   "license": "MIT",
   "description": "Spatcher is helping the creation of routes in the express framework, routes do not need to be all written when the controllers lie in a folder and contain a range of actions",
