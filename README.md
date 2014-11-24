@@ -115,7 +115,7 @@ Configuration
 Configuration can be done before or after wiring the routes. 
 
 ```javascript
-var app = require('express)();
+var app = require('express')();
 var spatcherInstance = require('spatcher')(app, 'app/mycontrollers');
 
 // This option is true by default and happens "Controller" to the name of
