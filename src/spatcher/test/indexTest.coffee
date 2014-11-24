@@ -45,6 +45,7 @@ describe 'spatcher', ->
     .then ->
       done()
 
+
   it 'should correctly handle the configuration', (done) ->
     #Updating the spatcherInstance configuration
     spatcherInstance.appendActionToName = false
@@ -71,6 +72,7 @@ describe 'spatcher', ->
     .then ->
       done()
 
+
   it 'should correctly extract parameters', (done) ->
     # Resetting the instance
     spatcherInstance.appendControllerToName = true
@@ -88,4 +90,16 @@ describe 'spatcher', ->
       expect(params).to.contain.keys('count', 'alphaToken')
       expect(params['alphaToken']).to.include.members(['42', 'Hey hey hey ç'])
 
+      done()
+
+
+  it 'should treat controller’s internal MODULE_NOT_FOUND as errors', (done) ->
+    # Resetting the instance
+    spatcherInstance.appendControllerToName = true
+    spatcherInstance.appendActionToName = true
+    spatcherInstance.errorOnActionNameLeadingUnderscore = true
+
+    url = '/buggy/hello'
+    testUrl(url).then (response) ->
+      expect(response.statusCode).to.equal 500
       done()

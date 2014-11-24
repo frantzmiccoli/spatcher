@@ -1,6 +1,5 @@
 class CounterController
 
-
   # coffeelint: disable=missing_fat_arrows
   constructor: ->
     # contains objects 'name' of the function called and 'args' for the

@@ -79,7 +79,9 @@ class Spatcher
       controller = require(targetModule)
     catch e
       # No error here it might be in another module
-      if e.code == 'MODULE_NOT_FOUND'
+      errorIsModuleNotFound = e.code == 'MODULE_NOT_FOUND'
+      errorStringContainsModule = (e + '').indexOf(targetModule) != -1
+      if errorIsModuleNotFound && errorStringContainsModule
         console.warn('No controller found: ',
             controllerName, ' looked in ' + targetModule)
         next()
