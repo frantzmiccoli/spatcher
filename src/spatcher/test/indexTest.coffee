@@ -103,3 +103,22 @@ describe 'spatcher', ->
     testUrl(url).then (response) ->
       expect(response.statusCode).to.equal 500
       done()
+
+
+  it 'should accept some external module load strategy', (done) ->
+    # Resetting the instance
+    spatcherInstance.appendControllerToName = true
+    spatcherInstance.appendActionToName = true
+    spatcherInstance.errorOnActionNameLeadingUnderscore = true
+
+    requireCounter = 0
+
+    spatcherInstance.controllerLoadFunction = (targetControllerName) ->
+      requireCounter += 1
+      require targetControllerName
+
+    testUrl('/counter')
+    .then (response) ->
+      expect(response.statusCode).to.equal 200
+      expect(requireCounter).to.equal 1
+      done()

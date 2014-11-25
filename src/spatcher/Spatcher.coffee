@@ -5,6 +5,8 @@ class Spatcher
     @appendControllerToName = true
     @appendActionToName = true
     @errorOnActionNameLeadingUnderscore = true
+    @controllerLoadFunction = (controllerName) ->
+      require controllerName
   # coffeelint: enable=missing_fat_arrows
 
 
@@ -76,7 +78,7 @@ class Spatcher
     controllerName = @_preprocessControllerName(controllerName)
     try
       targetModule = controllersModule + "/" + controllerName
-      controller = require(targetModule)
+      controller = @controllerLoadFunction(targetModule)
     catch e
       # No error here it might be in another module
       errorIsModuleNotFound = e.code == 'MODULE_NOT_FOUND'
