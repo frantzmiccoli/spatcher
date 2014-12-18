@@ -1,5 +1,5 @@
 {expect} = require 'chai'
-request = require 'express-mock-request'
+request = require 'supertest'
 Q = require 'q'
 
 
@@ -9,7 +9,9 @@ app = (require 'express')()
 
 testUrl = (urlToTest) ->
   deferred = Q.defer()
-  request(app).get(urlToTest).expect (response) ->
+  #request(app).get(urlToTest).expect (response) ->
+  #  deferred.resolve(response)
+  request(app).get(urlToTest).end (err, response) ->
     deferred.resolve(response)
   deferred.promise
 

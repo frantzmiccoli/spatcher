@@ -1,6 +1,6 @@
 {
   "name": "spatcher",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "author": "Fräntz Miccoli",
   "license": "MIT",
   "description": "Spatcher is helping the creation of routes in the express framework, routes do not need to be all written when the controllers lie in a folder and contain a range of actions",
@@ -19,7 +19,6 @@
     "chai": "^1.9.1",
     "coffee-script": "^1.7.1",
     "express": "^4.10.2",
-    "express-mock-request": "smallmultiples/express-mock-request#220d381c03c1ccbd66f54742ded60615e9eb0f66",
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
     "grunt-coffeelint": "0.0.10",
@@ -28,7 +27,8 @@
     "grunt-mocha-test": "^0.11.0",
     "grunt-shell": "^0.7.0",
     "mocha": "^1.21.4",
-    "q": "^1.1.2"
+    "q": "^1.1.2",
+    "supertest": "^0.15.0"
   },
   "scripts": {
     "test": "node_modules/.bin/grunt mochaTest"
